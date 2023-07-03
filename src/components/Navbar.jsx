@@ -3,7 +3,8 @@ import { Link, useNavigate } from "react-router-dom";
 import "../components/nav.css";
 import { UserContext } from "../../context/userContext";
 import toast from 'react-hot-toast'
-
+import { useEffect } from "react";
+import axios from 'axios'
 
 
 
@@ -11,16 +12,34 @@ const Navbar = () => {
   const { user, setUser } = useContext(UserContext);
 const navigate = useNavigate()
 
+  useEffect(()=>{
+    const myFun = async () => {
+
+      const res = await axios.get("/profile")
+      console.log(res)
+      if(res.status  === 220){
+        toast.success("works")
+        setUser(res.data)
+      }else{
+        toast.error(res.data);
+      }
+
+    }
+    myFun();
+  },[])
+
+  const handleLogout = async () => {
 
 
-  const handleLogout = () => {
-    fetch("https://sanjay-authentication-backend.onrender.com/logout", {
-      credentials: "include",
-      method: "POST",
-    });
+
+    const logout = await axios.post('/logout');
+    console.log(logout)
+   
+
+
     setUser(null);
 
-    toast.success("logout successfully");
+    toast.success("logout");
     navigate("/");
   };
 

@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import axios from 'axios'
 import {toast} from 'react-hot-toast'
 import { useNavigate } from "react-router-dom";
-import Footer from "../components/Footer";
+
 
 const Login = () => {
   const navigate = useNavigate()
@@ -21,7 +21,9 @@ const Login = () => {
         password,
       })
       if(data.error){
-        return toast.error(data.error);
+         toast.error(data.error);
+         navigate('/')
+
       }
         setData({})
         navigate('/dashboard')
@@ -60,7 +62,7 @@ const Login = () => {
 
       </form>
     </div>
-      <Footer/>
+
       </>
 
 

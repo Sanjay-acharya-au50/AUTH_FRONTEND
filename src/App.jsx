@@ -12,8 +12,8 @@ import { UseProvider } from '../context/userContext'
 import Dashboard from './pages/Dashboard'
 import Error from './pages/Error'
 
-
-axios.defaults.baseURL = "https://sanjay-authentication-backend.onrender.com";
+// https://sanjay-authentication-backend.onrender.com
+axios.defaults.baseURL = "http://localhost:8000";
 axios.defaults.withCredentials = true;
 
 function App() {
